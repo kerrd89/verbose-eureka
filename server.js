@@ -39,12 +39,25 @@ app.post('/api/post', (request, response) => {
   response.status(201).json({ list: app.locals.list });
 });
 
+app.post('/api/post/:shortid', (request, response) => {
+  let { shortid } = request.params;
+  console.log(request.body, shortid);
+  if(!shortid) return response.status(404);
+  app.locals.list.forEach((item, index) => {
+    if (item.id === shortid) {
+      console.log('hit');
+      app.locals.list[index] = request.body;
+    };
+  });
+  response.status(201).json({ list: app.locals.list });
+});
+
 const objectConstructor = (name, offense) => {
   let obj = {
     id: shortID(),  //better than integer ID, but different from required model
     name: name.toString(),
     offense: offense.toString(),
-    status: false //if you are petty enough to add them to the list, you have not forgiven
+    status: false
   };
   return obj;
 };
