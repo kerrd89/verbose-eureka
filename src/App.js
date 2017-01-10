@@ -98,6 +98,7 @@ class App extends Component {
         {displayForm && <Form onSubmit={(e)=>this.addToList(e)}/>}
         <div className="content">
           <ul className="list-preview">
+            <li>Total: {dataset[0]+dataset[1]} Forgiven: {dataset[0]} Be-Grudging: {dataset[1]}</li>
             {listItems}
           </ul>
           <section className="detailed-view">

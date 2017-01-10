@@ -16,9 +16,10 @@
 button {
   background-color: #3E2723;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 16px;
   color: white;
+  text-align: center;
 }
 
 h1 {
