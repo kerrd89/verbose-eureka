@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link} from 'react-router';
 
 import './reset.css';
 import './App.css';
 
 import Header from './components/Header';
 import Form from './components/Form';
-import DeleteSvg from './components/DeleteSvg';
 import Chart from './components/ChartJs';
 
 class App extends Component {
@@ -14,20 +14,24 @@ class App extends Component {
     super();
     this.state = {
       displayForm: false,
-      listData: []
+      listData: [],
+      selectedPerson: null
     };
   }
 
   componentDidMount() {
-    axios.get('/list')
+    axios.get('http://localhost:3001/api/list')
     .then(r => {
       this.setState({ listData: r.data.list });
     }).catch(err => console.log(err));
+    if (this.props.params.shortid) {
+      this.setState({ selectedPerson: this.props.params.shortid });
+    }
   }
 
   addToList(e) {
     e.preventDefault();
-    const { name, offense } =  e.target
+    const { name, offense } =  e.target;
     axios.post('/post', {
       name: name.value,
       offense: offense.value
@@ -44,32 +48,31 @@ class App extends Component {
 
   listItemTemplate(listData) {
     return listData.map((item, index) => {
-      return  <li key={index}
-                  onClick={()=>this.selectPerson(index)}
+      return  <Link to={"/"+item.id}><li key={index}
+                  onClick={()=>this.setState({ selectedPerson: item.id })}
                   className={item.status ? 'forgiven' : 'grudging'}>
                 {item.name}
-              </li>
+              </li></Link>
     });
   }
 
-  detailedItemTemplate(item) {
-    return <section className={item.status ? 'forgiven' : 'grudging'}>
-              <div className="item-header">
-                <p>Who done it? {item.name}</p>
-                <button className="item-button"
-                  onClick={()=>this.updateRecord(item, 'status', !item.status)}
-                >
-                  {item.status ? "Grudge-On" : "Forgive"}
-                </button>
-              </div>
-              <p>What did they do? {item.offense}</p>
-            </section>
-  }
-
-  selectPerson(index) {
-    let selectedPerson = this.state.listData[index]
-    this.setState({ selectedPerson })
-    console.log(this.state.selectedPerson, index);
+  detailedItemTemplate(id) {
+    const { listData } = this.state
+    for (let i = 0; i < listData.length; i++) {
+      if (listData[i].id === id) {
+        return (<section className={listData[i].status ? 'forgiven' : 'grudging'}>
+                  <div className="item-header">
+                    <p>Who done it? {listData[i].name}</p>
+                    <button className="item-button"
+                      onClick={()=>this.updateRecord(listData[i], 'status', !listData[i].status)}
+                    >
+                      {listData[i].status ? "Grudge-On" : "Forgive"}
+                    </button>
+                  </div>
+                  <p>What did they do? {listData[i].offense}</p>
+                </section>)
+      }
+    }
   }
 
   countGrudges(listData) {
