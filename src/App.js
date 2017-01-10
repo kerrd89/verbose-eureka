@@ -48,7 +48,7 @@ class App extends Component {
 
   listItemTemplate(listData) {
     return listData.map((item, index) => {
-      return  <Link to={"/"+item.id}><li key={index}
+      return  <Link to={"/"+item.id} key={index}><li
                   onClick={()=>this.setState({ selectedPerson: item.id })}
                   className={item.status ? 'forgiven' : 'grudging'}>
                 {item.name}
