@@ -1,0 +1,33 @@
+.App {
+  font-family: Roboto-Regular;
+}
+
+.App-header {
+  background-color: #3E2723;
+  height: 50px;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+button {
+  background-color: #3E2723;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
+
+h1 {
+  margin: 10px;
+}
+
+input {
+  border: 2px solid #3E2723;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 10px;
+}
