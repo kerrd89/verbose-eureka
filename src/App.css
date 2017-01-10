@@ -31,3 +31,12 @@ input {
   line-height: 24px;
   margin: 10px;
 }
+
+li {
+  margin: 0px auto;
+  width: 80%;
+}
+
+.grudging {
+  background-color: red;
+}
