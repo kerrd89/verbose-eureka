@@ -19,7 +19,7 @@ app.listen(app.get('port'), () => {
 });
 
 app.get('/', (request, response) => {
-  fs.readFile(`${__dirname}/public/index.html`, (err, file) => {
+  fs.readFile(`${__dirname}/build/index.html`, (err, file) => {
     response.send(file);
   });
 });
