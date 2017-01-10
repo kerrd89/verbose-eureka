@@ -17,7 +17,7 @@ button {
   background-color: #3E2723;
   border: none;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 16px;
   color: white;
 }
 
@@ -25,9 +25,56 @@ h1 {
   margin: 10px;
 }
 
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
 input {
   border: 2px solid #3E2723;
   font-size: 16px;
   line-height: 24px;
   margin: 10px;
+}
+
+li {
+  margin: 5px auto;
+  float: left;
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.list-preview {
+  width: 25%;
+  border: 2px solid #3E2723;
+  margin: 0px;
+}
+
+.detailed-view {
+  width: 75%;
+  border: 2px solid #3E2723;
+}
+
+.item-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button.item-button {
+  background-color: #3E2723;
+}
+
+.grudging {
+  background-color: #FFCDD2;
+}
+
+.nobody-selected {
+  text-align: center;
 }
