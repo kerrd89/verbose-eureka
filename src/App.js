@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/list')
+    axios.get('https://obscure-waters-17699.herokuapp.com/api/list')
     .then(r => {
       this.setState({ listData: r.data.list });
     }).catch(err => console.log(err));
@@ -32,7 +32,7 @@ class App extends Component {
   addToList(e) {
     e.preventDefault();
     const { name, offense } =  e.target;
-    axios.post('/post', {
+    axios.post('https://obscure-waters-17699.herokuapp.com/api/post', {
       name: name.value,
       offense: offense.value
     }).then(r => this.setState({ listData: r.data.list}))
@@ -41,7 +41,7 @@ class App extends Component {
 
   updateRecord(item, key, value) {
     item[key] = value;
-    axios.post(`http://localhost:3001/api/post/${item.id}`, item)
+    axios.post(`https://obscure-waters-17699.herokuapp.com/api/post/${item.id}`, item)
     .then(r => this.setState({ listData: r.data.list }))
     .catch(err => console.log(err));
   }
