@@ -19,11 +19,13 @@
     "react-router": "^3.0.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "https://obscure-waters-17699.herokuapp.com/api",
-  "homepage": "https://blooming-island-76304.herokuapp.com/"
+  "homepage": "https://kerrd89.github.io/verbose-eureka"
 }
